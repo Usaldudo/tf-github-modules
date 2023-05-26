@@ -14,3 +14,10 @@ module "secrets" {
   repository        = var.repository
   owner             = var.owner
 }
+
+module "environments" {
+  source       = "../modules/gh-envs"
+  environments = var.environments
+  repository   = var.repository
+  owner        = var.owner
+}

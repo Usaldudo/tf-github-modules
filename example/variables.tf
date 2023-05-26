@@ -13,3 +13,8 @@ variable "plaintext_secrets" {
 variable "encrypted_secrets" {
   type = map(string)
 }
+
+variable "environments" {
+  type    = any
+  default = []
+}

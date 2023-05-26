@@ -24,6 +24,27 @@ module "secrets" {
   repository        = myreponame
   owner             = myusername
 }
+module "environments" {
+  source       = "git::https://github.com/Usaldudo/tf-github-modules.git//modules/gh-envs"
+  environments = environments = [{
+    name = "dev"
+    deployment_branch_policy = {
+      protected_branches          = true
+      custom_branch_policies = false
+    }
+    variables = {
+      "Var0" = "val0"
+    }
+    plaintext_secrets = {
+      "MY_ENV_SECRET" = "secret"
+    }
+    encrypted_secrets = {
+      "MY_ENV_ENC_SECRET" = "MTIzNDU="
+    }
+  }]
+  repository   = myreponame
+  owner        = myusername
+}
 ```
 
 ```bash
@@ -40,6 +61,7 @@ The following inputs are supported:
 - `plaintext_secrets` (optional): A map of secrets to create.
 - `variables` (optional): A map of variables to create.
 - `secrets` (optional): A map of secrets to create.
+- `environments` A list of environments to create
 
 ## Outputs
 
@@ -47,4 +69,4 @@ The following inputs are supported:
 
 ## Note
 
-This module requires that you have appropriate permissions to create secrets and variables in the specified repository.
+These modules requires that you have appropriate permissions to create secrets and variables in the specified repository.
