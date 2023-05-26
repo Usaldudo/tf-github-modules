@@ -5,14 +5,11 @@ variable "owner" {
   type = string
 }
 variable "variables" {
-  type = list(object({
-    variable_name = string
-    value         = string
-  }))
+  type = map(string)
 }
-variable "secrets" {
-  type = list(object({
-    secret_name     = string
-    encrypted_value = string
-  }))
+variable "plaintext_secrets" {
+  type = map(string)
+}
+variable "encrypted_secrets" {
+  type = map(string)
 }

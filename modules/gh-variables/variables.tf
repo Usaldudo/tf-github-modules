@@ -5,12 +5,12 @@ variable "owner" {
   type = string
 }
 variable "variables" {
-  type = list(object({
-    variable_name = string
-    value         = string
-  }))
-  default = [{
-    variable_name = "name1"
-    value         = "val2"
-  }]
+  description = "(Optional) Configuring actions variables. For details please check: https://www.terraform.io/docs/providers/github/r/actions_variable"
+  type        = map(string)
+  # Example:
+  # variables = {
+  #     "MY_VAR" = "42"
+  # }
+
+  default = {}
 }

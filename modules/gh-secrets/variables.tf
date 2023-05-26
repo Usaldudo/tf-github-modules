@@ -4,13 +4,26 @@ variable "repository" {
 variable "owner" {
   type = string
 }
-variable "secrets" {
-  type = list(object({
-    secret_name     = string
-    encrypted_value = string
-  }))
-  default = [{
-    secret_name     = "name1"
-    encrypted_value = "FVutzYe1jzqHU8ZMSEyMndF24oVdFumRumYam7X8h27AwpAc1vkRQjKOh4e3XOw7akuCRjJDzv27Ph3FY8e7eQ=="
-  }]
+variable "plaintext_secrets" {
+  description = "(Optional) Configuring actions secrets. For details please check: https://www.terraform.io/docs/providers/github/r/actions_secret"
+  type        = map(string)
+
+  # Example:
+  # plaintext_secrets = {
+  #     "MY_SECRET" = "42"
+  #     "OWN_TOKEN" = "12345"
+  # }
+
+  default = {}
+}
+variable "encrypted_secrets" {
+  description = "(Optional) Configuring encrypted actions secrets. For details please check: https://www.terraform.io/docs/providers/github/r/actions_secret"
+  type        = map(string)
+
+  # Example:
+  # encrypted_secrets = {
+  #     "MY_ENCRYPTED_SECRET" = "MTIzNDU="
+  # }
+
+  default = {}
 }

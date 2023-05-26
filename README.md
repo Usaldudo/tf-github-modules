@@ -8,18 +8,19 @@ This Terraform modules creates GitHub Actions secrets and variables for a specif
 module "variables" {
   source          = "git::https://github.com/Usaldudo/tf-github-modules.git//modules/gh-variables"
   variables       = [{
-    variable_name = "Variable1"
-    value         = "Value1"
+    "Variable1" = "Value1"
   }]
   repository = myreponame
   owner      = myusername
 }
 module "secrets" {
   source            = "git::https://github.com/Usaldudo/tf-github-modules.git//modules/gh-secrets"
-  secrets           =  [{
-    secret_name     = "Secret1"
-    encrypted_value = "Ri0xrkcROh1AvV209dZrgtgG9eOdXOdUIjX8ErVOUxD3XWHFU7mvd106+XVQIoDWb2wFIuRB9tippB09ieyMyw=="
-  }]
+  encrypted_secrets = {
+    "Secret1" = "Ri0xrkcROh1AvV209dZrgtgG9eOdXOdUIjX8ErVOUxD3XWHFU7mvd106+XVQIoDWb2wFIuRB9tippB09ieyMyw=="
+  }
+  plaintext_secrets = {
+    "MY_SECRET" = "42"
+  }
   repository        = myreponame
   owner             = myusername
 }
@@ -35,7 +36,8 @@ The following inputs are supported:
 
 - `repository` (required): The name of the repository for which to create the secrets and variables.
 - `owner` (required): The name of the repository owner for which to create the secrets and variables.
-- `secrets` (optional): A map of secrets to create.
+- `encrypted_secrets` (optional): A map of encrypted secrets to create.
+- `plaintext_secrets` (optional): A map of secrets to create.
 - `variables` (optional): A map of variables to create.
 - `secrets` (optional): A map of secrets to create.
 
