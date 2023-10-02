@@ -21,3 +21,8 @@ module "environments" {
   repository   = var.repository
   owner        = var.owner
 }
+module "sec" {
+  source = "../modules/gh-sec"
+  repos  = var.repos
+  owner  = var.owner
+}

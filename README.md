@@ -45,6 +45,22 @@ module "environments" {
   repository   = myreponame
   owner        = myusername
 }
+module "sec" {
+  source       = "git::https://github.com/Usaldudo/tf-github-modules.git//modules/gh-sec"
+  owner        = myusername
+  repos        = [{
+    name = "myreponame"
+    variables = {
+      "Var0" = "val0"
+    }
+    plaintext_secrets = {
+      "MY_ENV_SECRET" = "secret"
+    }
+    encrypted_secrets = {
+      "MY_ENV_ENC_SECRET" = "MTIzNDU="
+    }
+  }]
+}
 ```
 
 ```bash

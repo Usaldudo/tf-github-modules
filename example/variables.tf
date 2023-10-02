@@ -18,3 +18,11 @@ variable "environments" {
   type    = any
   default = []
 }
+variable "repos" {
+  type = list(object({
+    name              = string
+    plaintext_secrets = optional(map(string))
+    encrypted_secrets = optional(map(string))
+    variables         = optional(map(string))
+  }))
+}

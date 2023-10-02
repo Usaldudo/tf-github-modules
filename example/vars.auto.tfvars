@@ -25,3 +25,17 @@ environments = [{
     "MY_ENV_ENC_SECRET" = "MTIzNDU="
   }
 }]
+
+repos = [ {
+  name = "test"
+  plaintext_secrets = {
+    "MY_SECRET" = "42"
+    "OWN_TOKEN" = "12345"
+  }
+  encrypted_secrets = {
+      "MY_ENV_ENC_SECRET" = "MTIzNDU="
+    }
+  variables = {
+    "Var0" = "val0"
+  }
+}]
